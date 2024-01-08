@@ -10,6 +10,7 @@ namespace expenses_tracker_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+            //test
                 name: "Users",
                 columns: table => new
                 {
