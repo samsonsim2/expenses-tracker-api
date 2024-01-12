@@ -2,19 +2,21 @@
 {
     public class User
     {
-
         public int Id { get; set; }
-        public string? firstName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Email { get; set; }
+        public string? ImageUrl { get; set; }
 
-        public string? lastName { get; set; }
+        public string? MainCurrency { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public string email { get; set; }
-
-        public string? imageUrl { get; set; }
-
-        public DateTime? createdAt { get; set; }
-        public DateTime? updatedAt { get; set; }
+        //1-m 
+        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 
 
+        // m-m relationship 
+        public List<UserCategory> UserCategory { get; set; }
     }
 }

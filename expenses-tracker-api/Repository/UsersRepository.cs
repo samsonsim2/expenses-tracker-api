@@ -15,7 +15,7 @@ namespace expenses_tracker_api.Repository
         }
         public User GetUser(string email)
         {
-            var user = _context.Users.Single(u => u.email == email);
+            var user = _context.Users.Single(u => u.Email == email);
             return user;
         }
 
