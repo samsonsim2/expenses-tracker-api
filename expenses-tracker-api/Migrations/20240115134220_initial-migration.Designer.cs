@@ -12,7 +12,7 @@ using expenses_tracker_api.Data;
 namespace expenses_tracker_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240115061626_initialmigration")]
+    [Migration("20240115134220_initial-migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

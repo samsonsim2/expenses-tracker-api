@@ -13,7 +13,8 @@
 
 
 
-        //1-m relationship
+        //1-m
+        
         public int UserId { get; set; }  
         public User User { get; set; } = null!;
 

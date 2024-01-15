@@ -10,8 +10,11 @@ namespace expenses_tracker_api.DTO
         public DateTime Date { get; set; }
 
 
+
+
         //1-m relationship       
-        //public int CategoryId { get; set; }
+        public int CategoryId { get; set; }
+        public int UserId { get; set; }
 
         //public Category Category { get; set; }  
         //public string CategoryName { get; set; }    

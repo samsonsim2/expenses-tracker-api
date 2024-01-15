@@ -19,6 +19,12 @@ namespace expenses_tracker_api.Repository
             return Save();
         }
 
+        public bool UpdateTransaction(Transaction transaction)
+        {
+            _context.Update(transaction);
+            return Save();
+        }
+
         public bool DeleteTransaction(Transaction transaction)
         {
             _context.Remove(transaction);
@@ -54,7 +60,7 @@ namespace expenses_tracker_api.Repository
         {
             return _context.Transactions.Include(t=>t.Category).ToList();
         }
-
+    
         public bool Save()
         {
             var saved = _context.SaveChanges();
@@ -66,11 +72,7 @@ namespace expenses_tracker_api.Repository
             return _context.Transactions.Any(t => t.Id == id);
         }
 
-        public bool UpdateTransaction(Transaction transaction)
-        {
-            _context.Update(transaction);
-            return Save();
-        }
+       
 
          
     }

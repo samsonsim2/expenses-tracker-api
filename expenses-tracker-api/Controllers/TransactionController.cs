@@ -37,11 +37,11 @@ namespace expenses_tracker_api.Controllers
 
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{userId}/transaction")]
         [ProducesResponseType(200, Type = typeof(Transaction))]
-        public IActionResult GetTransactionsByUser(int id )
+        public IActionResult GetTransactionsByUser(int userId )
         {
-            var transactions = _transactionRepository.GetTransactionsByUser(id);
+            var transactions = _transactionRepository.GetTransactionsByUser(userId);
 
             return Ok(transactions);
         }
@@ -107,20 +107,26 @@ namespace expenses_tracker_api.Controllers
 
         }
 
-        [HttpPut("{id}")]
-        [ProducesResponseType(400)]
+        [HttpPut("{id}")]        
         [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
-        public IActionResult UpdateTransaction(int id, [FromQuery] int userId, [FromQuery] int categoryId, [FromBody] TransactionDTO transactionDTO)
+        
+        public IActionResult UpdateTransaction(int id, [FromBody] TransactionDTO transactionDTO)
         {
-            var transactionMap = _mapper.Map<Transaction>(transactionDTO);
+            var transactionMap = _mapper.Map<Transaction>(transactionDTO);                       
+             
 
-            transactionMap.User = _usersRepository.GetUser(userId);
-            transactionMap.Category = _categoryRepository.GetCategory(userId);
+            if (!_transactionRepository.UpdateTransaction(transactionMap))
+            {
 
-            _transactionRepository.UpdateTransaction(transactionMap);
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
 
-            return Ok("Successfully Updated");
+
+            }
+
+            return NoContent();
+
+           
 
 
 
