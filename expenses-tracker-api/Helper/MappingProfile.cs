@@ -10,6 +10,8 @@ namespace expenses_tracker_api.Helper
         {
             CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryDTO, Category>();
+            CreateMap<Transaction, TransactionDTO>();
+            CreateMap<TransactionDTO, Transaction>();    
         }
     }
 }

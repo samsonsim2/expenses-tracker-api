@@ -19,7 +19,11 @@ namespace expenses_tracker_api.Data
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+
+
         }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -129,6 +133,28 @@ namespace expenses_tracker_api.Data
                 CategoryId = 2,
             };
             modelBuilder.Entity<UserCategory>().HasData(userCategory1, userCategory2);
+
+
+            var transaction1 = new Transaction
+            {
+                Id = 1,
+                UserId = 1,
+                CategoryId = 1,
+                Name = "starbucks",
+                Amount = 7.5,
+                Date = new DateTime()
+            };
+
+            var transaction2 = new Transaction
+            {
+                Id = 2,
+                UserId = 1,
+                CategoryId =2,
+                Name = "McDonalds",
+                Amount = 6.3,
+                Date = new DateTime()
+            };
+            modelBuilder.Entity<Transaction>().HasData(transaction1, transaction2);
 
 
             base.OnModelCreating(modelBuilder);

@@ -8,6 +8,6 @@ namespace expenses_tracker_api.Repository
 
         ICollection<User> GetUsers();
 
-        User GetUser(string email);
+        User GetUser(int id);
     }
 }

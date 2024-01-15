@@ -73,13 +73,23 @@ namespace expenses_tracker_api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Transactions_Users_UserId",
                         column: x => x.UserId,
@@ -143,19 +153,32 @@ namespace expenses_tracker_api.Migrations
                 values: new object[] { 2, "#d500f9", true, 1, "Entertainment" });
 
             migrationBuilder.InsertData(
-                table: "UserCategories",
-                columns: new[] { "Id", "CategoryId", "UserId" },
-                values: new object[] { 1, 1, 1 });
+                table: "Transactions",
+                columns: new[] { "Id", "Amount", "CategoryId", "Date", "Name", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 7.5, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "starbucks", 1 },
+                    { 2, 6.2999999999999998, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "McDonalds", 1 }
+                });
 
             migrationBuilder.InsertData(
                 table: "UserCategories",
                 columns: new[] { "Id", "CategoryId", "UserId" },
-                values: new object[] { 2, 2, 1 });
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 1 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_IncomeExpenseId",
                 table: "Categories",
                 column: "IncomeExpenseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CategoryId",
+                table: "Transactions",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_UserId",

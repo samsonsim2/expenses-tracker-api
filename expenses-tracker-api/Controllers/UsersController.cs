@@ -20,10 +20,10 @@ namespace expenses_tracker_api.Controllers
             return Ok(_usersRepository.GetUsers());
         }
 
-        [HttpGet("{email}", Name = "GetUser")]
-        public IActionResult GetUser(string email)
+        [HttpGet("{id}", Name = "GetUser")]
+        public IActionResult GetUser(int id)
         {
-            return Ok(_usersRepository.GetUser(email));
+            return Ok(_usersRepository.GetUser(id));
         }
 
     }
