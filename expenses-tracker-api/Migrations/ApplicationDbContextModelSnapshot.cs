@@ -201,6 +201,9 @@ namespace expenses_tracker_api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("AmazonUsername")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -236,6 +239,7 @@ namespace expenses_tracker_api.Migrations
                         new
                         {
                             Id = 1,
+                            AmazonUsername = "123",
                             Email = "Samsonsim2@gmail.com",
                             FirstName = "Samson",
                             ImageUrl = "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY",
@@ -245,6 +249,7 @@ namespace expenses_tracker_api.Migrations
                         new
                         {
                             Id = 2,
+                            AmazonUsername = "456",
                             Email = "SamTan2@gmail.com",
                             FirstName = "Sam",
                             ImageUrl = "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY",

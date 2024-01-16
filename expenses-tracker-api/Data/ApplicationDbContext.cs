@@ -63,6 +63,7 @@ namespace expenses_tracker_api.Data
             var user1 = new User
             {
                 Id = 1,
+                AmazonUsername = "123",
                 FirstName = "Samson",
                 LastName = "Sim",
                 Email = "Samsonsim2@gmail.com",
@@ -73,6 +74,7 @@ namespace expenses_tracker_api.Data
             var user2 = new User
             {
                 Id = 2,
+                AmazonUsername = "456",
                 FirstName = "Sam",
                 LastName = "Tan",
                 Email = "SamTan2@gmail.com",

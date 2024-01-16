@@ -14,11 +14,11 @@ namespace expenses_tracker_api.Controllers
 
 
         private readonly ITransactionRepository _transactionRepository;
-        private readonly IUsersRepository _usersRepository;
+        private readonly IUserRepository _usersRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
 
-        public TransactionController(ITransactionRepository transactionRepository, IUsersRepository usersRepository, ICategoryRepository categoryRepository,IMapper mapper)
+        public TransactionController(ITransactionRepository transactionRepository, IUserRepository usersRepository, ICategoryRepository categoryRepository,IMapper mapper)
         {
             _transactionRepository = transactionRepository;
             _usersRepository = usersRepository;
@@ -37,11 +37,11 @@ namespace expenses_tracker_api.Controllers
 
 
 
-        [HttpGet("{userId}/transaction")]
+        [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Transaction))]
-        public IActionResult GetTransactionsByUser(int userId )
+        public IActionResult GetTransactionsByUser(int id )
         {
-            var transactions = _transactionRepository.GetTransactionsByUser(userId);
+            var transactions = _transactionRepository.GetTransactionsByUser(id);
 
             return Ok(transactions);
         }
@@ -107,26 +107,20 @@ namespace expenses_tracker_api.Controllers
 
         }
 
-        [HttpPut("{id}")]        
+        [HttpPut("{id}")]
+        [ProducesResponseType(400)]
         [ProducesResponseType(204)]
-        
-        public IActionResult UpdateTransaction(int id, [FromBody] TransactionDTO transactionDTO)
+        [ProducesResponseType(404)]
+        public IActionResult UpdateTransaction(int id, [FromQuery] int userId, [FromQuery] int categoryId, [FromBody] TransactionDTO transactionDTO)
         {
-            var transactionMap = _mapper.Map<Transaction>(transactionDTO);                       
-             
+            var transactionMap = _mapper.Map<Transaction>(transactionDTO);
 
-            if (!_transactionRepository.UpdateTransaction(transactionMap))
-            {
+            transactionMap.User = _usersRepository.GetUser(userId);
+            transactionMap.Category = _categoryRepository.GetCategory(userId);
 
-                ModelState.AddModelError("", "Something went wrong while saving");
-                return StatusCode(500, ModelState);
+            _transactionRepository.UpdateTransaction(transactionMap);
 
-
-            }
-
-            return NoContent();
-
-           
+            return Ok("Successfully Updated");
 
 
 

@@ -30,6 +30,7 @@ namespace expenses_tracker_api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    AmazonUsername = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -135,11 +136,11 @@ namespace expenses_tracker_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Email", "FirstName", "ImageUrl", "LastName", "MainCurrency" },
+                columns: new[] { "Id", "AmazonUsername", "Email", "FirstName", "ImageUrl", "LastName", "MainCurrency" },
                 values: new object[,]
                 {
-                    { 1, "Samsonsim2@gmail.com", "Samson", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "Sim", "SGD" },
-                    { 2, "SamTan2@gmail.com", "Sam", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "Tan", "SGD" }
+                    { 1, "123", "Samsonsim2@gmail.com", "Samson", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "Sim", "SGD" },
+                    { 2, "456", "SamTan2@gmail.com", "Sam", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "Tan", "SGD" }
                 });
 
             migrationBuilder.InsertData(
