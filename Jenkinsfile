@@ -2,20 +2,29 @@ pipeline {
     agent any
     stages {
       
-        stage('build') {           
+       stage('Checkout') {
             steps {
-                script {
-                    echo "Building the application..."
-                }
+                git branch: 'master', url: 'https://github.com/samsonsim2/expenses-tracker-api.git'
             }
         }
-       
-        stage('deploy') {            
+
+        stage('Install tools') {
             steps {
-                script {
-                    echo "Deploying the application..."
-                }
+                // Install .NET SDK version required by your project
+                sh 'curl -sSL https://raw.githubusercontent.com/dotnet/scripting/master/install-sdk.sh | bash -s -- -version x.y.z'
             }
         }
-    }
+
+        stage('Build') {
+            steps {
+                sh 'dotnet restore'
+                sh 'dotnet build --configuration Release'
+            }
+        }
+
+        stage('Publish artifacts') {
+            steps {
+                publish artifacts('bin/Release/*.dll')
+            }
+        }
 }
