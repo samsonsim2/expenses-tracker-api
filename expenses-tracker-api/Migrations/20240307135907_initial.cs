@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace expenses_tracker_api.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -105,8 +105,8 @@ namespace expenses_tracker_api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,43 +115,49 @@ namespace expenses_tracker_api.Migrations
                         name: "FK_UserCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_UserCategories_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
                 table: "IncomeExpenses",
                 columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Expense" },
-                    { 2, "Income" }
-                });
+                values: new object[] { 1, "Expense" });
+
+            migrationBuilder.InsertData(
+                table: "IncomeExpenses",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "Income" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AmazonUsername", "Email", "FirstName", "ImageUrl", "LastName", "MainCurrency" },
+                values: new object[] { 1, "123", "AdminUser@gmail.com", "Admin", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "User", "SGD" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Color", "DefaultCategory", "IncomeExpenseId", "Name" },
                 values: new object[,]
                 {
-                    { 1, "123", "Samsonsim2@gmail.com", "Samson", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "Sim", "SGD" },
-                    { 2, "456", "SamTan2@gmail.com", "Sam", "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY", "Tan", "SGD" }
+                    { 1, "#ff5733", true, 1, "Food" },
+                    { 2, "#d500f9", true, 1, "Entertainment" },
+                    { 3, "#0080ff", true, 1, "Transportation" },
+                    { 4, "#3b3b3b", true, 1, "Groceries" },
+                    { 5, "#f4d03f", true, 1, "Housing" },
+                    { 6, "#00ff7f", true, 1, "Clothing" },
+                    { 7, "#ff1493", true, 1, "Utilities" },
+                    { 8, "#ff8c00", true, 1, "Health" },
+                    { 9, "#800000", true, 1, "Education" },
+                    { 10, "#6a5acd", true, 1, "Insurance" },
+                    { 11, "#f08080", true, 1, "Tax" },
+                    { 12, "#ffa07a", true, 2, "Salary" },
+                    { 13, "#8b0000", true, 2, "Allowance" },
+                    { 14, "#00ced1", true, 2, "Bonus" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "Color", "DefaultCategory", "IncomeExpenseId", "Name" },
-                values: new object[] { 1, "#ff5733", true, 1, "Food" });
-
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "Color", "DefaultCategory", "IncomeExpenseId", "Name" },
-                values: new object[] { 2, "#d500f9", true, 1, "Entertainment" });
 
             migrationBuilder.InsertData(
                 table: "Transactions",
@@ -168,7 +174,19 @@ namespace expenses_tracker_api.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1 },
-                    { 2, 2, 1 }
+                    { 2, 2, 1 },
+                    { 3, 3, 1 },
+                    { 4, 4, 1 },
+                    { 5, 5, 1 },
+                    { 6, 6, 1 },
+                    { 7, 7, 1 },
+                    { 8, 8, 1 },
+                    { 9, 9, 1 },
+                    { 10, 10, 1 },
+                    { 11, 11, 1 },
+                    { 12, 12, 1 },
+                    { 13, 13, 1 },
+                    { 14, 14, 1 }
                 });
 
             migrationBuilder.CreateIndex(

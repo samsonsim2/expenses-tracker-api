@@ -17,8 +17,9 @@ namespace expenses_tracker_api.DTO
         public int UserId { get; set; }
 
         //public Category Category { get; set; }  
-        //public string CategoryName { get; set; }    
+        public string CategoryName { get; set; }
+        public string CategoryIncomeExpenseId  { get; set; }
 
-        //public string CategoryColor { get; set; }   
+        public string CategoryColor { get; set; }
     }
 }

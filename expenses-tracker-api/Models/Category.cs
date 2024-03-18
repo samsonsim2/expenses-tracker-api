@@ -14,11 +14,12 @@
         public int IncomeExpenseId { get; set; } 
         public IncomeExpense IncomeExpense { get; set; } = null!;
 
-        public  ICollection<Transaction> Transaction { get; set; }  
+        public  ICollection<Transaction> Transaction { get; set; } = new List<Transaction>();
 
 
 
         // m-m relationship 
+       
         public List<UserCategory> UserCategory { get; set; }
 
     }

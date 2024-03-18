@@ -23,13 +23,22 @@ namespace expenses_tracker_api.Controllers
         [ProducesResponseType(200,Type= typeof(IEnumerable<Category>))]  
         public IActionResult GetCategories()
         {
-            var categories = _mapper.Map<List<CategoryDTO>>(_categoryRepository.GetCategories());
+            var categories = _mapper.Map<List<Category>>(_categoryRepository.GetCategories());
+            //var categories =  _categoryRepository.GetCategories();
 
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            return Ok(categories);
+        }
+
+        [HttpGet("userId/{userId}")]
+        [ProducesResponseType(200, Type = typeof(Transaction))]
+        public IActionResult GetUserCategories(int userId)
+        {
+            var categories = _categoryRepository.GetUserCategories(userId);             
             return Ok(categories);
         }
 
@@ -42,7 +51,7 @@ namespace expenses_tracker_api.Controllers
             {
                 return NotFound();  
             }
-
+           
             var category = _categoryRepository.GetCategory(id);
 
             if (!ModelState.IsValid)
@@ -56,7 +65,7 @@ namespace expenses_tracker_api.Controllers
 
         [HttpPost]
         [ProducesResponseType(204)]
-        public IActionResult CreateCategory([FromBody] CategoryDTO categoryDTO)
+        public IActionResult CreateCategory([FromBody] CategoryDTO categoryDTO,int userId)
         {
             if (categoryDTO == null) {
                 return BadRequest(ModelState);
@@ -76,13 +85,14 @@ namespace expenses_tracker_api.Controllers
 
             var categoryMap = _mapper.Map<Category>(categoryDTO);
 
-            if(!_categoryRepository.CreateCategory(categoryMap))
+
+            if (!_categoryRepository.CreateCategory(categoryMap,userId))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
 
-            return Ok("Successfully Created");
+            return Ok("Successfully created");
 
 
 
@@ -143,6 +153,8 @@ namespace expenses_tracker_api.Controllers
             }
 
             var categoryToDelete = _categoryRepository.GetCategory(id);
+
+          
 
             if (!ModelState.IsValid)
             {

@@ -3,6 +3,7 @@ using expenses_tracker_api.DTO;
 using expenses_tracker_api.Models;
 using expenses_tracker_api.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace expenses_tracker_api.Controllers
 {
@@ -37,15 +38,24 @@ namespace expenses_tracker_api.Controllers
 
 
 
-        [HttpGet("{id}")]
+        [HttpGet("userId")]
         [ProducesResponseType(200, Type = typeof(Transaction))]
-        public IActionResult GetTransactionsByUser(int id )
+        public IActionResult GetTransactionsByUser(int id ,int month,int year,int pageSize,int pageNumber)
         {
-            var transactions = _transactionRepository.GetTransactionsByUser(id);
+            var transactions = _transactionRepository.GetTransactionsByUser(id, month, year,pageSize,pageNumber);
 
             return Ok(transactions);
         }
 
+
+        [HttpGet("userId/pageCount")]
+        [ProducesResponseType(200, Type = typeof(Transaction))]
+        public IActionResult CountTransactionPages(int id, int month, int year, int pageSize)
+        {
+            var pageCount = _transactionRepository.CountTransactionPages(id, month, year, pageSize);
+
+            return Ok(pageCount);
+        }
 
         [HttpGet("{transactionId}")]
         [ProducesResponseType(200, Type = typeof(Transaction))]
@@ -56,20 +66,39 @@ namespace expenses_tracker_api.Controllers
             return Ok(transactions);
         }
 
+        [HttpGet("monthlyExpenseSum")]
+      [ProducesResponseType(200, Type = typeof(Transaction))]
+        public IActionResult GetMonthlyExpenseSum(int userId)
+        {
+            var transactions = _transactionRepository.GetMonthlyExpenseSum(userId);
+
+            var transactions2 = JsonConvert.SerializeObject(transactions);
+
+            return Ok(transactions2);
+        }
+
+        [HttpGet("monthlyIncomeSum")]
+        [ProducesResponseType(200, Type = typeof(Transaction))]
+        public IActionResult GetMonthlyIncomeSum(int userId)
+        {
+            var transactions = _transactionRepository.GetMonthlyIncomeSum(userId);
+          
+
+            return Ok(transactions);
+        }
 
         [HttpPost]
         [ProducesResponseType(204)]
 
-        public IActionResult CreateTransaction([FromQuery] int userId, [FromQuery] int categoryId, [FromBody] TransactionDTO transactionDTO)
+        public IActionResult CreateTransaction([FromBody] TransactionDTO transactionDTO)
 
 
         {
             var transactionMap = _mapper.Map<Transaction>(transactionDTO);
 
-
-
-            transactionMap.User = _usersRepository.GetUser(userId);
-            transactionMap.Category = _categoryRepository.GetCategory(userId);
+            
+            //transactionMap.User = _usersRepository.GetUser(userId);
+            //transactionMap.Category = _categoryRepository.GetCategory(userId);
 
 
             if (!_transactionRepository.CreateTransaction(transactionMap))
@@ -78,7 +107,7 @@ namespace expenses_tracker_api.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok("Successfully Created");
+            return Ok("{}");
 
         }
 

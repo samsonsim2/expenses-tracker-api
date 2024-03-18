@@ -19,16 +19,31 @@ namespace expenses_tracker_api.Repository
             return _context.Categories.Any(c => c.Id == id);
         }
 
-        public bool CreateCategory(Category category)
+        public bool CreateCategory(Category category,int userId) //please followup on this and dd user id as a parameter
         {
+
             _context.Add(category);
+
+            _context.SaveChanges();
+
+            _context.Add(new UserCategory
+            {
+               
+                UserId = userId,
+                CategoryId = category.Id,
+
+
+            });
             return Save();
 
         }
 
         public bool DeleteCategory(Category category)
         {
-           _context.Remove(category);   
+
+            var userCategoryToRemove = _context.UserCategories.Where(userCategory => userCategory.CategoryId == category.Id).FirstOrDefault();
+            _context.Remove(userCategoryToRemove);
+            _context.Remove(category);   
             return Save();  
         }
 
@@ -40,8 +55,12 @@ namespace expenses_tracker_api.Repository
 
         public ICollection<Category> GetCategories()
         {
-            return _context.Categories.ToList();
+            return _context.Categories.Include(c =>  c.UserCategory ).ToList();
+
+
         }
+
+ 
 
         public Category GetCategory(int id)
         {
@@ -56,6 +75,15 @@ namespace expenses_tracker_api.Repository
         {
             var saved = _context.SaveChanges(); 
             return saved > 0 ? true : false;
+        }
+
+        
+        public ICollection<Category> GetUserCategories(int id)
+
+
+        {
+            return _context.UserCategories.Where(c => c.UserId == id).Select(c => c.Category).ToList();
+             
         }
     }
 }

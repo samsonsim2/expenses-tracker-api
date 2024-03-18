@@ -31,6 +31,12 @@ namespace expenses_tracker_api.Controllers
             return Ok(_usersRepository.GetUser(id));
         }
 
+        [HttpGet("username")]
+        public IActionResult GetUserByUsername(string username)
+        {
+            return Ok(_usersRepository.GetUserByUsername(username));
+        }
+
 
         [HttpPost]
         [ProducesResponseType(204)]

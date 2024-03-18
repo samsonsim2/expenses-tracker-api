@@ -80,6 +80,126 @@ namespace expenses_tracker_api.Migrations
                             IncomeExpenseId = 1,
                             Name = "Entertainment",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Color = "#0080ff",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Transportation",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Color = "#3b3b3b",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Groceries",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Color = "#f4d03f",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Housing",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Color = "#00ff7f",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Clothing",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Color = "#ff1493",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Utilities",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Color = "#ff8c00",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Health",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Color = "#800000",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Education",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Color = "#6a5acd",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Insurance",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Color = "#f08080",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 1,
+                            Name = "Tax",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Color = "#ffa07a",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 2,
+                            Name = "Salary",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Color = "#8b0000",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 2,
+                            Name = "Allowance",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Color = "#00ced1",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DefaultCategory = true,
+                            IncomeExpenseId = 2,
+                            Name = "Bonus",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -240,36 +360,26 @@ namespace expenses_tracker_api.Migrations
                         {
                             Id = 1,
                             AmazonUsername = "123",
-                            Email = "Samsonsim2@gmail.com",
-                            FirstName = "Samson",
+                            Email = "AdminUser@gmail.com",
+                            FirstName = "Admin",
                             ImageUrl = "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY",
-                            LastName = "Sim",
-                            MainCurrency = "SGD"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AmazonUsername = "456",
-                            Email = "SamTan2@gmail.com",
-                            FirstName = "Sam",
-                            ImageUrl = "https://unsplash.com/photos/a-brick-wall-with-a-brick-wall-4l8G33tbRFY",
-                            LastName = "Tan",
+                            LastName = "User",
                             MainCurrency = "SGD"
                         });
                 });
 
             modelBuilder.Entity("expenses_tracker_api.Models.UserCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -291,6 +401,78 @@ namespace expenses_tracker_api.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 4,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 5,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 6,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 7,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 8,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 9,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 10,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 11,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 12,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 13,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 14,
                             UserId = 1
                         });
                 });
@@ -329,15 +511,11 @@ namespace expenses_tracker_api.Migrations
                 {
                     b.HasOne("expenses_tracker_api.Models.Category", "Category")
                         .WithMany("UserCategory")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("expenses_tracker_api.Models.User", "User")
                         .WithMany("UserCategory")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Category");
 
